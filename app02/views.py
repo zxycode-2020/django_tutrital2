@@ -6,12 +6,12 @@ from django.shortcuts import render, HttpResponse
 def index(request):
     print(request.method)
     print(request.POST)
-    return HttpResponse("这个是首页--app01")
+    return HttpResponse("这个是首页--app02")
 
 
 def article(request, aid):
-    return HttpResponse('文章页ok--app01')
+    return HttpResponse('文章页ok--app02')
 
 
 def test_url(request):
-    return HttpResponse('url测试--app01')
+    return HttpResponse('url测试--app02')
