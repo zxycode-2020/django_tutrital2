@@ -1,0 +1,38 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="{% static 'app01/css/common.css' %}" rel="stylesheet">
+</head>
+<body>
+{#hr标签是横线#}
+{#     {%  %}中放表达式，{{  }}中放变量，#}
+{#    获取contex中key为title的值#}
+    {{ title }}
+   <hr>
+{#    下面表达式为对congtext中key为language进行遍历#}
+    {% for l in language %}
+        {{ l }}
+    {% endfor %}
+<hr>
+{#     下面为对congtext中key为language的值的第一个元素#}
+    {{ language.0 }}
+<hr>
+{#遍历info字典#}
+    {% for key,value in info.item %}
+        {{ key }}-----{{ value }}
+        {% endfor %}
+<hr>
+{#查看类的属性#}
+  {{ h1.h_name }}------{{ h1.h_age }}
+<hr>
+{#查看类的方法#}
+{{ h1.sayhellow }}
+
+<img src="{% static 'app01/images/meinv.jpg' %}">
+
+</body>
+</html>

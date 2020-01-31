@@ -1,5 +1,5 @@
 from django.urls import path, include
-from app01.views import index, article, test_url, student, students, args, reg
+from app01.views import index, article, test_url, student, students, args, reg, xuanran
 
 urlpatterns = [
     path('index/', index),
@@ -9,4 +9,5 @@ urlpatterns = [
     path('student/<str:stu_id>/', student),  # 学生单个
     path('args/', args),
     path('reg/', reg),
+    path('xuanran/', xuanran),
 ]

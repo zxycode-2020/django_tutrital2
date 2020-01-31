@@ -78,3 +78,28 @@ def reg(request):
         return render(request, 'app01/reg.html')
     else:
         return HttpResponse('fuck off')
+
+
+class Human:
+    h_name = "人类"
+    h_age = 100000
+
+    def sayhellow(self):
+        return '沙扬娜拉'
+
+
+def xuanran(request):
+    title = "标题"
+    ls = ['python', 'java', 'php']
+    info = {
+        'name': '啦啦啦',
+        'age': 20
+    }
+    h1 = Human()
+    context = {
+        'title': title,
+        'language': ls,
+        'info': info,
+        'h1': h1
+    }
+    return render(request, 'app01/xuanran.html', context)
