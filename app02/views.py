@@ -15,3 +15,11 @@ def article(request, aid):
 
 def test_url(request):
     return HttpResponse('url测试--app02')
+
+
+def caijing(request):
+    return render(request, 'app02/caijing.html')
+
+
+def yule(request):
+    return render(request, 'app02/yule.html')
