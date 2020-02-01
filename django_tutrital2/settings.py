@@ -105,16 +105,16 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
-#  django admin 语言
-LANGUAGE_CODE = 'en-us'
-#  django 所使用的时区
-TIME_ZONE = 'UTC'
+# 将后台英文换成中文
+LANGUAGE_CODE = 'zh-hans'
+# 时区变更 和USE_TZ 一起设置
+TIME_ZONE = 'Asia/Shanghai'
 
 USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
+USE_TZ = False
 
 
 # Static files (CSS, JavaScript, Images)
