@@ -1,5 +1,5 @@
 from django.shortcuts import render, HttpResponse
-
+from app01.models import Class, Student
 
 # Create your views here.
 
@@ -103,3 +103,34 @@ def xuanran(request):
         'h1': h1
     }
     return render(request, 'app01/xuanran.html', context)
+
+
+def orm_test(request):
+    """
+    增加操作
+    """
+    # 新增一个名字为1901的一个班级,create是新增方法，里面可以接受多个字段参数
+    # Class.objects.create(name="1901")
+    # 同时新增一个学生和班级操作
+    # 新增一个班级名称为1903的班级，返回一个班级实例
+    # cls_instance = Class.objects.get(name="1903")
+    # stu_info左边的key要和Student模型字段对应上，因为cls是外键，所以要对应一个班级的实例
+    # stu_info = {
+    #     "name":"XIAOmei",
+    #     "age": "24",
+    #     "score":"88",
+    #     "email": "1333@qq.com",
+    #     "introduce": "假如你是xiaomei",
+    #     "cls": cls_instance
+    # }
+    # Student.objects.create(**stu_info)
+    """
+    修改操作
+    """
+    # 将名字为1901的班级名称改为1901_xiu，filter为过滤，支持多个参数，update是更新方法，支持多个参数
+    # Class.objects.filter(name="1901").update(name="1901_xiu")
+    """
+    删除操作
+    """
+    # 将名字为1901_xiu的班级删除掉，delete是删除方法
+    # Class.objects.filter(name="1901_xiu").delete()

@@ -1,5 +1,5 @@
 from django.urls import path, include
-from app01.views import index, article, test_url, student, students, args, reg, xuanran
+from app01.views import index, article, test_url, student, students, args, reg, xuanran, orm_test
 
 urlpatterns = [
     path('index/', index),
@@ -10,4 +10,5 @@ urlpatterns = [
     path('args/', args),
     path('reg/', reg),
     path('xuanran/', xuanran),
+    path('orm_test/', orm_test)
 ]
