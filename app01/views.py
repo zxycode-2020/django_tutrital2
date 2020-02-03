@@ -1,6 +1,7 @@
 from django.shortcuts import render, HttpResponse
 from app01.models import Class, Student
 
+
 # Create your views here.
 
 # def index(request, *args, **kwargs):
@@ -212,3 +213,14 @@ def orm_test(request):
     # queryset = Student.objects.filter(score__gt=90).all()
 
     return HttpResponse('数据库操作成功')
+
+
+def post_cls(request):
+    Class.objects.create(name="1901")
+    return HttpResponse('数据库操作成功')
+
+
+def get_cls(request):
+    res = Class.objects.all().values()
+    print(res)
+    return HttpResponse(res)

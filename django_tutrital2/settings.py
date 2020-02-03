@@ -11,10 +11,10 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+import djcelery
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
@@ -27,7 +27,6 @@ DEBUG = True
 # 允许访问你项目的ip, *表示任何ip都可以访问
 ALLOWED_HOSTS = ['*']
 
-
 # Application definition
 # 每创建一个新的 app 应用 就要在这里添加
 INSTALLED_APPS = [
@@ -39,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'app01',
     'app02',
+    'djcelery',
 ]
 # 中间件 可以介入Django的请求和响应处理过程，修改Django的输入或输出
 MIDDLEWARE = [
@@ -72,7 +72,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'django_tutrital2.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 # 数据库配置
@@ -82,7 +81,6 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
@@ -102,7 +100,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 # 将后台英文换成中文
@@ -114,8 +111,7 @@ USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = False
-
+USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
@@ -126,3 +122,15 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
+
+# celery任务相关配置
+djcelery.setup_loader()
+CELERYBEAT_SCHEDULER = 'djcelery.schedulers.DatabaseScheduler'
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+
+REDIS_URL = 'redis://:%s@%s:%s/%s' % ("",
+                                      "127.0.0.1",
+                                      "6379",
+                                      "")
