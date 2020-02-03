@@ -12,12 +12,6 @@ logger = logging.getLogger(__name__)
 today = datetime.date.today()
 
 
-def post_cls():
-    cls = Class.objects.create(name="1901")
-    return cls
-
-
-
 @app.task()
 def say_hello():
     print("hello celery")

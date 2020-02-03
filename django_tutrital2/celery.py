@@ -1,42 +1,33 @@
 from __future__ import absolute_import, unicode_literals
 
-import datetime
 import logging
 import os
 
-from celery import Celery, shared_task
+from celery import Celery
 from django.conf import settings
 
-# from django_tutrital2.settings import BACKUP_PATH
-# from libs.datetimes import date_to_str
-# from libs.environment import ENV
 
 logger = logging.getLogger(__name__)
-# current_env = ENV()
-#
+# 固定设置
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'django_tutrital2.settings')
-
-app = Celery('django_tutrital2',
-             broker=settings.REDIS_URL,
-             backend=settings.REDIS_URL,
-             include=["app01.tasks"
+# 实例化 celery
+app = Celery('django_tutrital2',    # 你这个django项目的名称
+             broker=settings.REDIS_URL,  # celery 的broker
+             backend=settings.REDIS_URL,  # celery 的backend
+             include=["app01.tasks"      # 定时脚本所在目录
                       ]
              )
 
-app.config_from_object('django.conf:settings')
-app.autodiscover_tasks(lambda: settings.INSTALLED_APPS)
+app.config_from_object('django.conf:settings')   # 固定设置
+app.autodiscover_tasks(lambda: settings.INSTALLED_APPS)  # 固定设置
 
 
+#  自定义的定时任务脚本
 @app.task()
 def test_beat():
     logger.info("bang!")
     print("bang")
     return "bang"
 
-
-
-@app.task(bind=True)
-def debug_task(self):
-    print('Request: {0!r}'.format(self.request))
 
 

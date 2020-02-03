@@ -129,7 +129,7 @@ CELERYBEAT_SCHEDULER = 'djcelery.schedulers.DatabaseScheduler'
 CELERY_ACCEPT_CONTENT = ['json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
-
+# redis 信息
 REDIS_URL = 'redis://:%s@%s:%s/%s' % ("",
                                       "127.0.0.1",
                                       "6379",
